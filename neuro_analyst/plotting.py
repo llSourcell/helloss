@@ -29,7 +29,7 @@ def plot_psd(raw: mne.io.Raw, compare_with: mne.io.Raw = None, **kwargs):
 
     ax.set_title("Power Spectral Density")
     plt.tight_layout()
-    plt.show()
+    return plt.gcf() # Return the figure object
 
 def plot_evoked(epochs: mne.Epochs, **kwargs):
     """

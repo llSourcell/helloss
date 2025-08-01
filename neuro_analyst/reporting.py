@@ -1,4 +1,3 @@
-
 import jinja2
 import plotly.io as pio
 import plotly.graph_objects as go
@@ -7,6 +6,7 @@ import mne
 import os
 import base64
 from io import BytesIO
+from .plotting import plot_psd
 
 # Updated HTML template to include more details
 HTML_TEMPLATE = """
@@ -42,6 +42,12 @@ HTML_TEMPLATE = """
                 <div class="card"><code>{{ key }}</code>: {{ value }}</div>
                 {% endfor %}
             </div>
+        </div>
+
+        <div class="section">
+            <h2>Power Spectral Density (PSD)</h2>
+            <p>Comparison of the PSD before and after cleaning. The 60Hz powerline noise should be visibly reduced.</p>
+            <div class="plot">{{ psd_plot }}</div>
         </div>
 
         <div class="section">
@@ -93,6 +99,13 @@ def generate_html_report(original_raw, cleaned_raw, config, bad_channels_found, 
     }
 
     # --- 2. Generate plots ---
+
+    # PSD plot
+    fig_psd = plot_psd(cleaned_raw, compare_with=original_raw)
+    tmpfile = BytesIO()
+    fig_psd.savefig(tmpfile, format='png')
+    encoded = base64.b64encode(tmpfile.getvalue()).decode('utf-8')
+    template_vars['psd_plot'] = f'<img src="data:image/png;base64,{encoded}">'
 
     # Signal comparison plot
     ch_to_plot = 'Cz' if 'Cz' in original_raw.ch_names else original_raw.ch_names[0]
