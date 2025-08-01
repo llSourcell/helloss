@@ -1,0 +1,10 @@
+mne
+numpy
+scipy
+pandas
+scikit-learn
+plotly
+jinja2
+matplotlib
+seaborn
+pytest

@@ -1,0 +1,69 @@
+Metadata-Version: 2.4
+Name: neuro_analyst
+Version: 0.1.0
+Summary: An automated EEG preprocessing library.
+Home-page: https://github.com/yourusername/neuro-analyst-os
+Author: Your Name
+Author-email: your.email@example.com
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: mne
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: pandas
+Requires-Dist: scikit-learn
+Requires-Dist: plotly
+Requires-Dist: jinja2
+Requires-Dist: matplotlib
+Requires-Dist: seaborn
+Requires-Dist: pytest
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Neuro-Analyst OS
+
+**Automated EEG Preprocessing and Visualization**
+
+This Python library drastically reduces the time and expertise required to turn raw EEG data into clean, analyzable data and publication-quality visualizations.
+
+## Core Philosophy
+
+- **Opinionated Automation:** Smart, scientifically-defensible choices are made for the user.
+- **Transparency & Trust:** The `clean()` function generates a detailed, interactive validation report.
+- **Beautiful by Default:** All plotting functions produce publication-ready charts with minimal configuration.
+
+## Installation
+
+```bash
+pip install -r requirements.txt
+python setup.py install
+```
+
+## Usage
+
+```python
+import neuro_analyst as na
+
+# Load your EEG data
+raw = na.load("path/to/your/data.edf")
+
+# Clean the data with a single command
+cleaned_raw = na.clean(raw)
+
+# Visualize the results
+na.plot_psd(cleaned_raw, compare_with=raw)
+```

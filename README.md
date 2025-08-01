@@ -1,0 +1,33 @@
+# Neuro-Analyst OS
+
+**Automated EEG Preprocessing and Visualization**
+
+This Python library drastically reduces the time and expertise required to turn raw EEG data into clean, analyzable data and publication-quality visualizations.
+
+## Core Philosophy
+
+- **Opinionated Automation:** Smart, scientifically-defensible choices are made for the user.
+- **Transparency & Trust:** The `clean()` function generates a detailed, interactive validation report.
+- **Beautiful by Default:** All plotting functions produce publication-ready charts with minimal configuration.
+
+## Installation
+
+```bash
+pip install -r requirements.txt
+python setup.py install
+```
+
+## Usage
+
+```python
+import neuro_analyst as na
+
+# Load your EEG data
+raw = na.load("path/to/your/data.edf")
+
+# Clean the data with a single command
+cleaned_raw = na.clean(raw)
+
+# Visualize the results
+na.plot_psd(cleaned_raw, compare_with=raw)
+```
